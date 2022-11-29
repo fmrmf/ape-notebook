@@ -1,16 +1,21 @@
-from ipykernel.kernelbase import Kernel
+from ipykernel.kernelapp import IPythonKernel
 
 
-class ApeKernel(Kernel):
-    implementation = "Ape"
+class ApeKernel(IPythonKernel):
+    implementation = "ape"
     implementation_version = "0.1"
-    language = "python"
-    language_version = ">=3.8,<4"
-    language_info = {"name": "ape", "mimetype": "text/plain", "extension": ".py"}
-    banner = "Kernel for Ape"
 
-    def do_execute(
-        self, code, silent, store_history=True, user_expressions=None, allow_stdin=False
-    ):
-        # TODO:
-        return super().do_execute(self, code, silent, store_history, user_expressions, allow_stdin)
+    def __init__(self, **kwargs):
+        """
+        Applies same namespace logic from ape_console to IPythonKernel.
+
+        SEE: https://github.com/ApeWorX/ape/blob/main/src/ape_console/_cli.py
+        """
+        import ape
+
+        # update user ns to ape prior to calling super
+        ns = {component: getattr(ape, component) for component in ape.__all__}
+        ns["ape"] = ape
+        self.user_ns = ns
+
+        super().__init__(**kwargs)

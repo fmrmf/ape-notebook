@@ -57,6 +57,7 @@ setup(
         "notebook>=6.4.11",
         "click>=8.1.0",
         "eth-ape>=0.5.0,<0.6.0",
+        "ipykernel",
     ],
     entry_points={
         "ape_cli_subcommands": [
