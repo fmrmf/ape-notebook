@@ -54,7 +54,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "importlib-metadata ; python_version<'3.8'",
-        "notebook>=6.4.11",
+        "notebook>=6.4.11,<7.0.0",
         "click>=8.1.0",
         "eth-ape>=0.5.0,<0.6.0",
         "ipykernel",
