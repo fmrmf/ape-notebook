@@ -10,6 +10,7 @@ class ApeKernel(IPythonKernel):
         Applies same namespace logic from ape_console to IPythonKernel.
 
         SEE: https://github.com/ApeWorX/ape/blob/main/src/ape_console/_cli.py
+        SEE: https://jupyter-client.readthedocs.io/en/stable/wrapperkernels.html
         """
         import ape
 
